@@ -1,11 +1,7 @@
-.content{
-    grid-area: c;
-    background-color: blue;
+.postsBlock{
+    padding: 10px;
 }
-.content img{
-    height: 430px;
-    width: 100%;
-}
-.item{
-    color: greenyellow;
+
+.posts{
+    margin-top: 10px;
 }

@@ -1,35 +1,40 @@
 import React from 'react';
-import s from './Profile.module.css';
+import s from './MyPosts.module.css';
+import Post from "./Post/Post";
 
-const Profile = () => {
+const MyPosts = (props) => {
+
+    const postsElements = props.posts
+        .map(p => <Post message={p.message} likesCount = {p.likesCount}/>)
+
+    const addPost = () => {
+        const text = newPostElement.current.value
+        if (newPostElement.current.value)
+        props.addPost(text)
+        newPostElement.current.value = '';
+    }
+
+    const newPostElement = React.createRef()
+
     return (
-        <div className={s.content}>
+        <div className={s.postsBlock}>
+            <h3>My posts</h3>
             <div>
-                <img
-                    src="https://images.ctfassets.net/hrltx12pl8hq/7yQR5uJhwEkRfjwMFJ7bUK/dc52a0913e8ff8b5c276177890eb0129/offset_comp_772626-opt.jpg?fit=fill&w=800&h=300"
-                    alt="photo"/>
-            </div>
-            <div>
-                {/*<img*/}
-                {/*    src="https://interactive-examples.mdn.mozilla.net/media/cc0-images/grapefruit-slice-332-332.jpg"*/}
-                {/*    alt="ava"/>*/}
-            </div>
-            <div>
-                My posts
                 <div>
-                    new post
+                    <textarea ref={newPostElement}></textarea>
                 </div>
-                <div className={s.posts}>
-                    <div className={s.item}>
-                        post 1
-                    </div>
-                    <div className={s.item}>
-                        post 2
-                    </div>
+                <div>
+                    <button onClick={
+                        addPost
+                    }>Add post</button>
                 </div>
+
+            </div>
+            <div className={s.posts}>
+                {postsElements}
             </div>
         </div>
     );
 };
 
-export default Profile;
+export default MyPosts;
